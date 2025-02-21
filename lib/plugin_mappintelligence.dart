@@ -214,7 +214,7 @@ class PluginMappintelligence {
 
   static Future<String> _updateCustomParams() async {
     // !! IMPORTANT !! UPDATE THIS VERSION TO BE THE SAME AS 'version' in pucspec.yaml plugin file
-    final flutterPluginVersion = "5.0.6";
+    final flutterPluginVersion = "5.0.7";
     debugPrint("FLUTTER PLUGIN VERSION: $flutterPluginVersion");
     final result = await _channel
         .invokeMethod("updateCustomParams", [flutterPluginVersion]);
@@ -224,6 +224,13 @@ class PluginMappintelligence {
   static Future<String> setUserMatchingEnabled(bool enabled) async {
     final args = <String, bool>{"enabled": enabled};
     final result = await _channel.invokeMethod("setUserMatchingEnabled", args);
+    return result;
+  }
+
+  static Future<String> setEnableBackgroundSendout(bool enabled) async {
+    final args = <String, bool>{"enabled": enabled};
+    final result =
+        await _channel.invokeMethod("setEnableBackgroundSendout", args);
     return result;
   }
 
