@@ -9,12 +9,12 @@ import com.example.plugin_mappintelligence.Parser.toMap
 import com.example.plugin_mappintelligence.webviewflutter.FlutterCookieManager
 import com.example.plugin_mappintelligence.webviewflutter.WebViewFactory
 import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterPluginBinding
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
-import io.flutter.plugin.common.PluginRegistry
 import org.json.JSONObject
 import webtrekk.android.sdk.DefaultConfiguration
 import webtrekk.android.sdk.ExceptionType
@@ -654,27 +654,6 @@ class PluginMappintelligencePlugin : FlutterPlugin, MethodCallHandler, ActivityA
         flutterCookieManager!!.dispose()
         flutterCookieManager = null
     }
-
-    companion object {
-        /**
-         * Registers a plugin implementation that uses the stable `io.flutter.plugin.common`
-         * package.
-         *
-         *
-         * Calling this automatically initializes the plugin. However plugins initialized this way
-         * won't react to changes in activity or context, unlike [CameraPlugin].
-         */
-        fun registerWith(registrar: PluginRegistry.Registrar) {
-            registrar
-                .platformViewRegistry()
-                .registerViewFactory(
-                    "plugin_mappintelligence/webview",
-                    WebViewFactory(registrar.messenger(), registrar.view())
-                )
-            FlutterCookieManager(registrar.messenger())
-        }
-    }
-
 
     private fun toMediaParameters(json: JSONObject): MediaParameters? {
         val pageParameters: MediaParameters
